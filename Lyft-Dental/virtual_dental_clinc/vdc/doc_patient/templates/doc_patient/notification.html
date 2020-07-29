@@ -1,0 +1,24 @@
+  {% block blockname %}
+  {% include "main.html" %}
+     <h2 >My Notifications </h2>
+     
+      {% for obj in object %}
+      <div class="card card-body">
+      <h3>  Appointment number --{{forloop.counter}},ID -{{obj.id}}  </h3> 
+      {% for item in object.notification_set.all%}
+      {% if forloop.last %} 
+      <h4>  {{item.notification}} 
+                       {% if item.video_url %}
+                       <a href="{{item.video_url}}" target="_blank">Call when you are Ready</a>  
+                       {% endif %}
+                 </h4> 
+                 {% endif %}
+         {% endfor %}    </div>         
+         {% endfor %}    
+           
+     {% comment %}
+              <li><a href="https://appr.tc/r/{{object.name}}" target="_blank">Click on Link to Join Video call</a></li>
+     {% endcomment %}  
+      {% endblock blockname %}
+ 
+     

@@ -1,0 +1,86 @@
+{% load static %}
+<head><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="{% static 'css/blog.css' %}"></head>
+  <link rel="stylesheet" href="{% static 'css/4.css' %}"></head>
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+
+  
+<style>
+   .logo-image{
+    width: 46px;
+    height: 30px;
+    border-radius: 50%;
+    overflow: hidden;
+  
+}
+   .hello-msg{
+    font-size: 25px;
+    color: #fff;
+    margin-right: 20px;
+  }
+  body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color:lightblue;
+  height:55px;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 10px 16px;
+  text-decoration: none;
+  font-size: 22px;
+  
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.topnav a.active {
+  color: white;
+}
+.topnav a.active {
+
+  color: white;
+}
+
+.topnav-right {
+  float: right;
+}
+</style>
+</head>
+<body>
+  
+<div class="topnav">
+  <a class="active" href="#home"><img src="{% static "images/vdc 1.png" %} " style="width:100px" style="height:30px" top=50% class="img-responsive" alt=""></a>
+  <a class="active" href="{% url 'doc_patient:home' %}">Home</a>
+{%  if request.user.is_superuser  %}
+<a class="active" href="{% url 'doc_patient:home' %}">Doctor</a>
+<a class="active" href="{% url 'doc_patient:notification' %}">Notification</a>
+<a class="active" href="{% url 'doc_patient:prescription' %}">Prescription</a>
+{% elif request.user.is_staff %}
+<a class="active" href="{% url 'doc_patient:patients' %}">My Patients</a>
+<a class="active" href="{% url 'doc_patient:doctor_detail' %}"> Profile</a> 
+{% else %}
+<a class="active" href="{% url 'doc_patient:profile' %}">Profile</a>
+<a class="nav-link" href="{% url 'doc_patient:home' %}">Doctor</a>
+<!-- <li class="nav-item">
+<a class="nav-link"target="_blank" href="http://127.0.0.1:8085/payment/user/">Payment</a> -->
+<a class="nav-link" href="{% url 'doc_patient:notification' %}"> Notification</a>
+<a class="nav-link" href="{% url 'doc_patient:prescription' %}"> prescription</a>
+{% endif %}
+  <div class="topnav-right">
+   
+    <a class="active" >Hello,{{request.user}}</a>
+    <a  class="hello-msg" href="{% url 'doc_patient:logout' %}">Log out</a>
+  </div>
+</div>
+</nav>

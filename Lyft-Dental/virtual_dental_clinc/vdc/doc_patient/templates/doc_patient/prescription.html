@@ -1,0 +1,34 @@
+  
+ {% block blockname %}
+ {% include "main.html" %}		  
+     <h2 >My Prescription </h2>
+    {% for obj in object %}
+      <div class="card card-body">
+    <h3> <STRong>Appointment number ->{{forloop.counter}},ID - {{obj.id}}</STRong>   </h3> 
+    <h5> PRESCRIPTION</h5>
+        {% for item in obj.prescription_set.all %}  
+       
+           <h4>{{forloop.counter}}  {{item.message}}</h4> 
+          
+   {% if item.test_result %} <center><li><h4>here is your Receipt and prescription-</h4></li></center>
+     <li><img src="{{item.test_result.url}}" alt="here is test result" style="width:500px;height:600px;">
+          <br></li>  
+          <a href="{{ object.test_result.url }}" download> Download Prescription</a>
+   {% endif %}     
+       
+      {% if item.video %} <li><h4>here is your excercise video</h4>
+        <video width="320" height="240" controls>
+            <source src="{{item.video.url}}" type="video/mp4">
+            Your browser does not support the video tag.
+          </video></li>
+      {% endif %}      </ol>
+    
+       {% endfor %}
+			</div>	{% endfor %}
+	
+	</div>
+     
+  
+ </body>
+       {% endblock blockname %}
+

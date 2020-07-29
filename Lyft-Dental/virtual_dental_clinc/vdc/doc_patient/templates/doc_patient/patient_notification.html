@@ -1,0 +1,161 @@
+{%  extends 'main.html' %}
+{% load static %}
+{% block content %}
+<head>  
+  <script type="text/javascript" src="{% static "js/jquery.js" %}"/>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+<body onload="generate_link()">
+  
+
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+  }
+  .flash {
+   animation-name: flash;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+@keyframes flash {
+    from {color: green;}
+    to {color: blue;}
+}
+  .button {
+  background-color: rgb(253, 53, 17);
+  border: none;
+  border-radius: 8px;
+  width: 150px;
+  height: 40px;
+  color: white;
+  font-size: 28px;
+  padding: 10px;
+  text-align: center;
+  text-decoration:none;
+  text-shadow: blue;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+</style>
+
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<hr>
+			<h3 style="text-align: center">Patient  </h3>
+			<hr>
+			<img class="profile-pic" src="{% static 'images/profile.jpeg' %}" >
+		
+		</div>
+	</div>
+     <div class="card card-body"style="background-color: rgb(214, 235, 235);" >
+<h5><strong>Notify Patient about meeting</strong> </h5>
+{% block new %}
+<form id="notifyform" action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+
+
+  <table border="2">
+    {{ notifyform }}
+  </table>
+<input class="btn btn-primary" type="submit" name="Update Information" value="Tap for notify and video call" >
+</form>
+// <script type="text/javascript">
+//   $('#notifyform').on('submit', function(event){
+//     event.preventDefault();
+//     $.ajax({
+//         url : window.location.href, // the endpoint
+//         type : "POST", // http method
+//         data : { notification : $('notification').val(),
+//         video_url : $('video_url').val(),
+//         csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+//       }, // data sent with the post request
+
+//         // handle a successful response
+//         success : function() {
+//           console.log("success");
+//             alert("notification sent"); // another sanity check
+//         },
+
+//         // handle a non-successful response
+//         error : function(xhr,errmsg,err) {
+//             $('#notifyform').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+//                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+//             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+//         }
+//     });
+// });
+//   </script>
+<script>
+var str="https://appr.tc/r/"
+function generate_link() {
+
+window.x = Math.floor((Math.random() * 1000000000) +10000 )
+  document.getElementById("id_video_url").value = str+window.x 
+}
+</script>
+
+{% endblock new %}
+<br>
+{% block video %}
+<div class="card card-body"style="background-color: rgb(214, 235, 235);"></div>
+{% for item in object.notification_set.all%}
+{% if forloop.last %} 
+<h4>  {{item.notification}} 
+                 {% if item.video_url %}
+                 <a href="{{item.video_url}}" target="_blank">Call when you are Ready</a>  
+                 {% endif %}
+           </h4> 
+           {% endif %}
+   {% endfor %}   
+  
+{% endblock video %}
+		</div>	
+		
+	</div>
+</div>
+
+  
+</body>
+
+{% endblock %}
+
+  

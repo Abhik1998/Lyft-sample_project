@@ -1,0 +1,143 @@
+/* line 4, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+.expert_doctors_area.doctor_page {
+    padding-bottom: 80px;
+  }
+  
+  @media (max-width: 767px) {
+    /* line 1, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+    .expert_doctors_area {
+      padding-top: 80px;
+      padding-bottom: 80px;
+    }
+  }
+  
+  /* line 12, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .doctors_title h3 {
+    font-size: 36px;
+    font-weight: 500;
+    color: #1F1F1F;
+  }
+  
+  @media (max-width: 767px) {
+    /* line 12, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+    .expert_doctors_area .doctors_title h3 {
+      font-size: 24px;
+    }
+  }
+  
+  /* line 22, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .single_expert .expert_thumb {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    overflow: hidden;
+  }
+  
+  /* line 26, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .single_expert .expert_thumb img {
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+    width: 100%;
+  }
+  
+  /* line 32, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .single_expert .experts_name {
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    background: #F5FBFF;
+    padding-top: 16px;
+    padding-bottom: 18px;
+  }
+  
+  /* line 37, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .single_expert .experts_name h3 {
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 1px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+  
+  /* line 43, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .single_expert .experts_name span {
+    color: #919191;
+    font-size: 13px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+  
+  /* line 51, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .single_expert:hover .expert_thumb img {
+    -webkit-transform: scale(1.03);
+    -moz-transform: scale(1.03);
+    -ms-transform: scale(1.03);
+    transform: scale(1.03);
+  }
+  
+  /* line 55, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .single_expert:hover .experts_name {
+    background: #5DB2FF;
+  }
+  
+  /* line 57, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .single_expert:hover .experts_name h3 {
+    color: #fff;
+  }
+  
+  /* line 60, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .single_expert:hover .experts_name span {
+    color: #fff;
+  }
+  
+  /* line 67, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .owl-carousel .owl-nav div {
+    background: transparent;
+    height: 40px;
+    left: 0px;
+    text-align: center;
+    -webkit-transform: translateY(0%);
+    -ms-transform: translateY(0%);
+    transform: translateY(0%);
+    width: 40px;
+    color: #919191;
+    background-color: transparent;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    font-size: 15px;
+    line-height: 40px;
+    border: 1px solid #EEEEEE;
+    left: auto;
+    left: auto;
+    top: -100px;
+    right: 55px;
+  }
+  
+  /* line 89, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .owl-carousel .owl-nav div.owl-next {
+    left: auto;
+    right: 0;
+  }
+  
+  /* line 94, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .owl-carousel .owl-nav div.owl-next i {
+    position: relative;
+    right: 0;
+  }
+  
+  /* line 101, C:/Users/SPN Graphics/Desktop/CL September/210 Medical/HTML/scss/_experts.scss */
+  .expert_doctors_area .owl-carousel .owl-nav div.owl-prev i {
+    position: relative;
+    top: 0px;
+  }

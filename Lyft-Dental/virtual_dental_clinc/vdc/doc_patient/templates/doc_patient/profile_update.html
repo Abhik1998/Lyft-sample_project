@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<<<<<<< HEAD
+<link href='{% static "/css/2.css" %}' rel='stylesheet' type='text/css'>
+
+    <form action='.' method="POST" enctype="multipart/form-data"><div class="container" text-align:"center"></div>
+   {% csrf_token %}
+   <center> {{ form.as_p }}</center>
+=======
+<link href='{% static "/css/bg.css" %}' rel='stylesheet' type='text/css'>
+
+    <form action='.' method="POST" enctype="multipart/form-data">
+        <div class="container" text-align:center></div>
+   {% csrf_token %}
+    {{ form.as_p }}
+>>>>>>> all changes till now
+    <input type='submit' value='Save' />
+</form>
+
+{% endblock %}

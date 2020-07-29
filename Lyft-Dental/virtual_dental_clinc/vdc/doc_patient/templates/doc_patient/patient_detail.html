@@ -1,0 +1,177 @@
+{%  extends 'main.html' %}
+{% load static %}
+{% block content %}
+<head>  
+  <script type="text/javascript" src="{% static "js/jquery.js" %}"/>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+</head>
+<body onload="generate_link()">
+  
+
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+  }
+  .flash {
+   animation-name: flash;
+    animation-duration: 0.2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-play-state: running;
+}
+
+@keyframes flash {
+    from {color: green;}
+    to {color: blue;}
+}
+.button {
+  background-color: #75c26a; /* Green */
+  border: none;
+  border-radius: 4px;
+  width: 300px;
+  height: 40px;
+  color: white;
+  font-size: 28px;
+  padding: 10px;
+  text-align: center;
+  text-decoration:none;
+  text-shadow: blue;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+div.b {
+  position: absolute;
+  right: 0;
+  width: 800px;
+  height: 400px;
+ 
+} 
+</style>
+
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<hr>
+			<h3 style="text-align: center">Patient  </h3>
+			<hr>
+			<img class="profile-pic" src="{% static 'images/profile.jpeg' %}" >
+		
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body" style="background-color: rgb(214, 235, 235);">
+      <h3 style="text-align: center"> Appointment Details</h3>
+       <h5>Name--{{ object.name }}</h5> 
+       <p ><strong>Appoinement id (CHAT ROOM ID)</strong> --{{object.appointment_id}}</p>
+        <p class="flash"><strong> Payment Status -{{object.payment}}</strong> </p>
+ <p>Age --{{ object.age }} </p>
+  <p>Sex--{{ object.sex }} </p>
+  <p>Doctor Name--{{object.doctorname}}</p>
+  <p>number--{{ object.mob }}</p> 
+  <p>Status--{{ object.status }} </p>
+  <p>Email--{{ object.emailid }}</p>
+  <p>date of appointment--{{ object.date }}</p> 
+  <p>date of appointment filled--{{ object.date_created }}</p> 
+  <p> treatment status--{{object.treated_or_not}} </p>
+  {% if object.description %}
+ <p> Description--{{ object.description }} </p>
+{% endif %} 
+
+    
+<a href="{{ object.is_treated }}" class="button" target="_blank">Mark as treated-</a>
+<a href={% url 'doc_patient:chat' object.doctorname object.id %} class="button" target="_blank" rel="noopener noreferrer">chat</a>
+ <a href={% url 'doc_patient:patient_notification' object.id %} class="button"   target="_blank" rel="noopener noreferrer">Notify-patient About meeting</a>
+{% if object.xray_1 %}
+    <h5><strong>Patient  X-ray image</strong> </h5>  <img width="320" height="240" src="{{ object.xray_1.url }}" alt="X-ray image" >  
+  <a href="{{ object.xray_1.url }}" download> Download X-ray</a>
+    {% endif %}
+
+
+{% if object.video %}
+  <h5><strong>Patient  short Video for dental problem-</strong> </h5> <video width="320" height="240" controls>
+    <source src="{{object.video.url}}" type="video/mp4">
+</video>
+{% endif %}
+		</div>
+	<br>
+    
+      <div class="card card-body" style="background-color: rgb(214, 235, 235);"><strong>Give Prescription</strong> </h5>
+{% block blockname %}
+
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <table border="2">
+    {{ form }}
+  </table>
+<input class="button" type="submit" name="Update Information">
+</form>
+{% endblock blockname %}</div>
+     <br>
+
+ 
+<script>
+var str="https://appr.tc/r/"
+function generate_link() {
+
+window.x = Math.floor((Math.random() * 1000000000) +10000 )
+  document.getElementById("id_video_url").value = str+window.x 
+}
+//script for Prescription
+document.getElementById("id_patient").value=((document.getElementsByTagName("h5")[0].innerHTML).split("--",2))[1]
+document.getElementById("id_doctor").value=((document.getElementsByTagName("p")[4].innerHTML).split("--",2))[1]
+document.getElementById("id_hospital").value="Virtual dental clinic"
+document.getElementById("id_patient_id").value=((document.getElementsByTagName("p")[0].innerHTML).split("--",2))[1]
+document.getElementById("id_age").value=parseInt((document.getElementsByTagName("p")[2].innerHTML).split("--",2)[1])
+document.getElementById("id_sex").value=((document.getElementsByTagName("p")[3].innerHTML).split("--",2))[1]
+
+</script>
+
+
+<br>
+		</div>	
+		
+	</div>
+</div>
+
+  
+</body>
+
+{% endblock %}
+
+  
+ 

@@ -1,0 +1,19 @@
+
+
+
+{% block content %}
+
+    {% include 'main.html' %}
+    <form action='.' method='POST' enctype="multipart/form-data">{% csrf_token %}
+    <h1><center>Do you want to delete the account ?</center></h1>
+    <center><p><input type='submit' value='Yes' />  <a href="{% url 'doc_patient:doctor_detail'  %}">Cancel</a></p></center>
+
+</form>
+</body>
+<!-- object is used for fetching data -->
+
+
+
+
+
+{% endblock %}

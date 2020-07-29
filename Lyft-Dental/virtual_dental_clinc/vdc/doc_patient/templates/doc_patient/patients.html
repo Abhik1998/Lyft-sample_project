@@ -1,0 +1,47 @@
+
+{% extends 'main.html' %}{% load static %}
+    <head><link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}"></head>
+        
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">}
+
+{% block content %}
+<center><h1>Name- {{ object.name }}</h3></center> 
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
+         <form method="get">
+           <center> <table border="2">
+           {{ myfilter.form}}</center>
+          
+          </table>
+            <center><button class="btn btn-primary" type="submit">Search</button></center>
+          </form>
+        </div>
+    </div>
+</div> <center>
+    <table border="2">
+ 
+    <tr>
+
+    <th>Name</th>
+
+    <th>Email Id</th>
+</tr>
+    
+{% for instance in myfilter.qs %} 
+
+
+<tr>
+  
+  <td> <a href='{{instance.get_absolute_url}}'> {{ instance.name}}</a></td>
+  <td> {{instance.emailid}} </td> 
+ </tr>
+ 
+  
+{% endfor %} </table> 
+</center>
+{% endblock %}
+
+

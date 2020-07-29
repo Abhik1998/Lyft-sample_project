@@ -1,0 +1,271 @@
+{%  extends 'main.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+body {
+  background: #F1F3FA;
+}
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  float: none;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+    
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+.profile-usermenu ul li.active1 {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+}</style>
+<br>
+
+    
+    </div>
+  </div>  
+  </div>
+</div>
+      
+      <hr>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+      <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+      <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+      <!------ Include the above in your HEAD tag ---------->
+      
+      <!--
+      User Profile Sidebar by @keenthemes
+      A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+      Licensed under MIT
+      -->
+      
+      <div class="container">
+          <div class="row profile">
+          <div class="col-md-3">
+            <div class="profile-sidebar">
+              <!-- SIDEBAR USERPIC -->
+              <div class="profile-userpic">
+                <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
+              </div>
+              <!-- END SIDEBAR USERPIC -->
+              <!-- SIDEBAR USER TITLE -->
+              <img class="profile-pic" src="{% static 'images/profile.jpeg' %}" >
+              <div class="profile-usertitle">
+                <div class="profile-usertitle-name">
+                  Name-{{ object.name }}
+                </div>
+                <div class="profile-usertitle-job">
+                  Patient
+                </div>
+              </div>
+              <!-- END SIDEBAR USER TITLE -->
+              <!-- SIDEBAR BUTTONS -->
+              <div class="profile-userbuttons">
+                <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='https://www.w3docs.com';">Edit profile</button>
+                <button type="button" class="btn btn-danger btn-sm" onclick="window.location.href='https://www.w3docs.com';">My appointment</button>
+              </div>
+              <!-- END SIDEBAR BUTTONS -->
+              <!-- SIDEBAR MENU -->
+             
+              <div class="profile-usermenu">
+                <ul class="nav">
+                  <li class="active">
+                    <a href="{% url 'doc_patient:notification' %}">
+                    <i class="glyphicon glyphicon-bell"></i>
+                    Notification </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'doc_patient:home' %}">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Doctor </a>
+                  </li>
+                  <li>
+                    <a href="{% url 'doc_patient:prescription' %}" target="_blank">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    Prescription</a>
+                  </li>
+                  <li>
+                    <a href="{% url 'doc_patient:logout' %}">
+                    <i class="glyphicon glyphicon-off"></i>
+                    Log Out </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- END MENU -->
+            </div>
+          </div>
+          <div class="col-md-9">
+                  <div class="profile-content">
+                    <h3 style="text-align: center"> <b> <center> Profile Summary</center> </b></h3>
+                  
+
+{% comment %}
+'name','age' ,'sex','mob','emailid','description','xray_1','video'
+
+{% endcomment %}
+
+    
+    </div>
+  </div>
+  {% for object in obj  %}      
+ <div class="col-md-9">
+  
+      <h3 style="text-align: center"><STRong>APPOINTMENT NUMBER- {{forloop.counter}} </STRong>  </h3>
+      <hr>
+      <link href='{% static "/css/pro1.css" %}' rel='stylesheet' type='text/css'>
+       <h5><b>Name-{{ object.name }}</b></h5>
+       <p class="flash"><strong> Payment Status -{{object.payment}}</strong> </p>
+        <p> <strong class="flash">Appoinement id (CHAT ROOM ID)</strong> - {{object.appointment_id}}</p>
+        <p>Age-  {{ object.age }} </p>
+        <p>Sex-  {{ object.sex }} </p>
+  <p>number-{{ object.mob }}</p> 
+  <p>Status-  {{ object.status }} </p>
+  <p>doctor name-  {{ object.doctorname }} </p>
+  <p>Email-{{ object.emailid }}</p>
+  <p>date of appointment-{{ object.date }}</p> 
+  <a href={% url 'doc_patient:chat' object.name object.id %} target="_blank" rel="noopener noreferrer">chat with doctor</a>
+  {% if object.description %}
+  <p>Description- <p>
+  <div >
+     {{ object.description }} 
+  </div>
+    
+  {% endif %}               
+{% if object.xray_1 %}
+    <h5><strong>My X-ray image</strong> </h5>  
+    
+    <img width="320" height="240" src="{{ object.xray_1.url }}" alt="X-ray image" >  
+    <br>
+<a href="{{ object.xray_1.url }}" download> Download X-ray</a>
+{% endif %}
+   {% if object.video %}
+          <h5><strong>My  short Video for dental problem-</strong> </h5> <video width="320" height="240" controls>
+    <source src="{{object.video.url}}" type="video/mp4">
+      
+</video>
+        {% endif %}
+  
+   <br>
+  <a href='{{object.edit_profile}}' target="_blank" rel="noopener noreferrer" class="button"  >EDIT APPOINTMENT</a>
+   <br>
+ <a href='{{object.profile_delete}}'  target="_blank" rel="noopener noreferrer" class="button">DELETE APPOINTMENT</a>
+  <br>
+  <a href="https://www.instamojo.com/@ayushiarvindsinghal/l7009dd793a754b9ca71fd429170db012/" rel="im-checkout" data-text="PAY FEE" data-css-style="color:#ffffff; background:#75c26a; width:300px; border-radius:4px"   data-layout="vertical"></a>
+                         <script src="https://js.instamojo.com/v1/button.js"></script>
+  
+      
+    {% endfor %}
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<br>
+<br>
+
+
+
+{% endblock %}

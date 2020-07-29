@@ -1,0 +1,76 @@
+adding static content (css/js/images/font) in project dir.
+If you want to use static files in your Django project, you have to realize several steps :lines(1:40)
+
+Step 1 : INSTALLED_APPS in settings.py
+
+Make sure that you have django.contrib.staticfiles in INSTALLED_APPS
+
+Step 2 : STATIC_URL
+
+Then, in settings.py file you have to write this : STATIC_URL = '/static/'
+
+Now, in your Django application, you can create a new repository named static and put your static elements inside.
+
+If you want to call on of this element :
+
+{% load static %}
+<img src="{% static "my_app/example.jpg" %}" alt="My image"/>
+STEP 3 (What do you want) : STATICFILES_DIRS
+
+If you have some static elements which are not for a particular Django application, you can use STATICFILES_DIRS.
+
+You can create a new repository beside Django applications repository : static.
+
+You will get :
+My_project
+|
+ __ application 1
+|
+ __ application 2
+|
+ __ ...
+|
+ __ static
+In settings.py file, please add :
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    'path_to_static_directory/static/',
+]
+Now, you can access to static files in any templates just by loading static files : {% load static %}
+
+lines(42:55)
+when working in app directory:
+
+Configuring static files¶
+Make sure that django.contrib.staticfiles is included in your INSTALLED_APPS.
+
+In your settings file, define STATIC_URL, for example:
+
+STATIC_URL = '/static/'
+In your templates, use the static template tag to build the URL for the given relative path using the configured STATICFILES_STORAGE.
+
+{% load static %}
+<img src="{% static "my_app/example.jpg" %}" alt="My image">
+Store your static files in a folder called static in your app. For example my_app/static/my_app/example.jpg.
+
+for html just use 'templates' folder on replace of 'static'.dir structure will be same
+but for project html it may work in appdir/templates/file.html 
+<Signals >
+    django.db.models.signals.pre_save & django.db.models.signals.post_save
+
+Sent before or after a model’s save() method is called.
+
+django.db.models.signals.pre_delete & django.db.models.signals.post_delete
+
+Sent before or after a model’s delete() method or queryset’s delete() method is called.
+
+django.db.models.signals.m2m_changed
+
+Sent when a ManyToManyField on a model is changed.
+
+django.core.signals.request_started & django.core.signals.request_finished
+
+Sent when Django starts or finishes an HTTP request.
+
+    </Signals>>

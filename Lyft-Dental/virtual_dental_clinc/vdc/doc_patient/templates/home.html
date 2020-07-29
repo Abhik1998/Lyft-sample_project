@@ -1,0 +1,1168 @@
+  <html lang="en">
+          <head>
+          
+               <title>VDC</title>
+               <meta charset="UTF-8">
+               <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+               <meta name="description" content="">
+               <meta name="keywords" content="">
+               <meta name="author" content="Tooplate">
+               <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+          {% load static %}
+          <link href='{% static "/css/footer.css" %}' rel='stylesheet' type='text/css'>
+          <link href='{% static "/css/expert.css" %}' rel='stylesheet' type='text/css'>
+          <link href='{% static "/css/doctor.css" %}' rel='stylesheet' type='text/css'>
+          <link href='{% static "/css/depart.css" %}' rel='stylesheet' type='text/css'>
+               <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+               <link rel="stylesheet" href="{% static "css/font-awesome.min.css" %}">
+               <link rel="stylesheet" href=" {% static "css/animate.css" %} ">
+               <link rel="stylesheet" href=" {% static "css/owl.carousel.css" %}  ">
+               <link rel="stylesheet" href=" {% static "css/owl.theme.default.min.css" %}  ">
+               <link href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1581152092/smartwizard/smart_wizard.min.css" rel="stylesheet" type="text/css" />
+               <link href="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1581152092/smartwizard/smart_wizard_theme_dots.min.css" rel="stylesheet" type="text/css" />
+               <script type="text/javascript" src="https://res.cloudinary.com/dxfq3iotg/raw/upload/v1581152197/smartwizard/jquery.smartWizard.min.js"></script>
+     
+          
+               <!-- MAIN CSS -->
+     
+               <link rel="stylesheet" href=" {% static "css/tooplate-style.css" %} ">
+          
+          </head>
+          <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+          
+               <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js">
+                       src= "https://cdnjs.cloudflare.com/ajax/libs/jquery-steps/1.1.0/jquery.steps.min.js">
+                        src ="{% static '/js/script.js' %}">
+                      
+
+               </script>
+          
+          <!-- Firebase -->
+          <script src="https://www.gstatic.com/firebasejs/3.3.0/firebase.js"></script>
+          
+          <!-- Firechat -->
+          <link rel="stylesheet" href="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.css" />
+          <script src="https://cdn.firebase.com/libs/firechat/3.0.1/firechat.min.js"></script>
+               
+               <!-- PRE LOADER -->
+               <section class="preloader">
+                    <div class="spinner">
+          
+                         <span class="spinner-rotate"></span>
+                         
+                    </div>
+               </section>
+          
+          
+               <!-- HEADER -->
+               <header>
+                    <div class="container">
+                         <div class="row">
+          
+                              <div class="col-md-4 col-sm-5">
+                                   <p id="result">Welcome to our Virtual Dental Care</p>
+                              </div>
+                                 
+                              <div class="col-md-8 col-sm-7 text-align-right">
+                                  
+                                   <div class="row d-flex justify-content-center mt-200"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Website Instruction </button> </div> <!-- Modal -->
+                                   
+                    </div>
+          
+                         </div>
+                    </div>
+               </header>
+          
+          
+               <!-- MENU -->
+               <section class="navbar navbar-default navbar-static-top" role="navigation">
+                    <div class="container">
+          
+                         <div class="navbar-header">
+                              <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                                   <span class="icon icon-bar"></span>
+                                   <span class="icon icon-bar"></span>
+                                   <span class="icon icon-bar"></span>
+                              </button>
+          
+                              <!-- lOGO TEXT HERE -->
+                              <img src="{% static "images/vdc.png" %} " class="img-responsive" alt="">
+                         </div>
+                        
+                          <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                         {% if request.user.is_authenticated %}
+                           
+                         <li><a href="{% url 'doc_patient:logout' %}" class="smoothScroll"><b class="flash" style="font-size: medium;">Logout</b></a></li>
+                         <li><a href="#team" class="smoothScroll"><b class="flash" style="font-size: medium;">Doctors</b></a></li>
+                         
+                         {% else %}
+           <li><a href="{% url 'account_login' %}" class="smoothScroll"><b class="flash" style="font-size: medium;">Login</b></a></li>  
+      <li><a href="{% url 'account_signup' %}" class="smoothScroll"><b class="flash" style="font-size: medium;">Sign Up</b></a></li>
+      <li><a href="#team" class="smoothScroll"><b class="flash" style="font-size: medium;">Doctors</b></a></li>
+      
+                         {% endif %}
+                         
+                         {%  if request.user.is_superuser  %}
+                         <li><a href="{% url 'doc_patient:profile' %}" class="smoothScroll"><b class="flash" style="font-size: medium;">My Profile</b></a></li>
+                           {%elif request.user.is_staff%}
+                       <li><a href="{% url 'doc_patient:doctor_detail' %}" class="smoothScroll"><b class="flash" style="font-size: medium;">My Profile</b></a></li>
+                     <li><a href="{% url 'doc_patient:patients' %}" class="smoothScroll"><b class="flash" style="font-size: medium;">My Patients</b></a></li>
+                         {% else %}
+                         <li><a href="{% url 'doc_patient:profile' %}" class="smoothScroll"><b class="flash" style="font-size: medium;">My profile</b></a></li>                           
+                                                  <li class="appointment-btn"><a href="{% url 'doc_patient:appointment_2' %}">Make an appointment</a></li>
+
+                         {% endif %}
+                         
+               </section>
+          
+               <!-- HOME -->
+               
+               <section id="home" class="slider" data-stellar-background-ratio="0.5">
+                    <div class="container">
+                         <div class="row">
+                                   <div class="owl-carousel owl-theme">
+                                        <div class="item item-first">
+                                             <div class="caption">
+                                                  <div class="col-md-offset-1 col-md-10">
+                                                       
+                                                       <center>
+                                                       <h1>Make an Appointment</h1>  
+                                                       <div class="row d-flex justify-content-center mt-200"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Website Instruction </button> </div> <!-- Modal -->
+                                                 </center> </div>
+                                             </div>
+                                        </div>
+                                        <div class="item item-second">
+                                             <div class="caption">
+                                                  <div class="col-md-offset-1 col-md-10">
+                                                     <center> 
+                                                       <h1>Chat/ Video Consultation</h1> 
+                                                       <div class="row d-flex justify-content-center mt-200"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> Website Instruction </button> </div> <!-- Modal -->   
+                                                  </center></div>
+                                             </div>
+                                        </div>
+          
+                                        <div class="item item-third">
+                                             <div class="caption">
+                                                  <div class="col-md-offset-1 col-md-10">
+                                                   <center>   
+                                                       <h1>Email Prescription</h1>
+                                                       <div class="row d-flex justify-content-center mt-200"> <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Website Instruction </button> </div> <!-- Modal -->
+                                                   </center></div>
+                                             </div>
+                                        </div>
+                                   </div>
+          
+                         </div>
+                    </div>
+               </section>
+          
+               <style>
+                    .service_area {
+  padding-top: 100px;
+  padding-bottom: 70px;
+}
+
+/* line 4, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area.minus_padding {
+  padding-bottom: 0;
+}
+
+/* line 7, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .single_service {
+  padding: 30px;
+  border: 1px solid #E8E8E8;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  margin-bottom: 30px;
+}
+
+/* line 13, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .single_service .service_icon {
+  line-height: 94px;
+  text-align: center;
+  width: 98px;
+  height: 98px;
+  margin: auto;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#0181f5+0,5db2ff+100 */
+  background: #0181f5;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #0181f5 0%, #5db2ff 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #0181f5 0%, #5db2ff 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #0181f5 0%, #5db2ff 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0181f5', endColorstr='#5db2ff',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 27, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .single_service h3 {
+  font-size: 22px;
+  color: #001D38;
+  font-weight: 300;
+  margin-top: 35px;
+  margin-bottom: 23px;
+}
+
+/* line 34, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .single_service p {
+  font-size: 15px;
+  font-weight: 400;
+  color: #727272;
+  line-height: 28px;
+  margin-bottom: 6px;
+}
+
+/* line 41, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .single_service a.learn_more {
+  color: #5DB2FF;
+  font-weight: 400;
+  font-size: 15px;
+}
+
+/* line 46, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .single_service:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.04);
+  border-color: transparent;
+}
+
+/* line 51, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .col-xl-4:nth-child(2) .single_service .service_icon {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#00d363+0,37ef8d+100 */
+  background: #00d363;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #00d363 0%, #37ef8d 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #00d363 0%, #37ef8d 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #00d363 0%, #37ef8d 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00d363', endColorstr='#37ef8d',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 60, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .col-xl-4:nth-child(3) .single_service .service_icon {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#fd8e5e+0,fd8e5e+100 */
+  background: #fd8e5e;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #fd8e5e 0%, #fd8e5e 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #fd8e5e 0%, #fd8e5e 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #fd8e5e 0%, #fd8e5e 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fd8e5e', endColorstr='#fd8e5e',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 69, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .col-xl-4:nth-child(4) .single_service .service_icon {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#615cfd+0,d465ef+100 */
+  background: #615cfd;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #615cfd 0%, #d465ef 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #615cfd 0%, #d465ef 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #615cfd 0%, #d465ef 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#615cfd', endColorstr='#d465ef',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 81, ../../Arafath/CL/CL October/216. Consulting/HTML/scss/_service.scss */
+.service_area .col-xl-4:nth-child(6) .single_service .service_icon {
+  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#a64eee+0,3c35ce+100 */
+  background: #a64eee;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #a64eee 0%, #3c35ce 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #a64eee 0%, #3c35ce 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #a64eee 0%, #3c35ce 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a64eee', endColorstr='#3c35ce',GradientType=0 );
+  /* IE6-9 */
+}
+                     .flex-container{
+                        width: 80%;
+                        min-height: 300px;
+                        margin: 0 auto;
+                        display: -webkit-flex; /* Safari */     
+                        display: flex; /* Standard syntax */
+                    }
+                    .flex-container .column{
+                         font-size:35px;
+                        padding: 10px;
+                       background:white;
+                        -webkit-flex: 1; /* Safari */
+                        -ms-flex: 1; /* IE 10 */
+                        flex: 1; /* Standard syntax */
+                    }
+                    .flex-container .column.bg-alt{
+                         background: white;
+                    }
+                    
+                    .grid-container {
+                   display: grid;
+                     grid-template-columns: 1fr 1fr;
+                     grid-gap: 20px;
+                     text-shadow: 1px 1px lightblue;
+                       }
+                       .grid-container1 {
+                   display: grid;
+                     grid-template-columns: 1fr 1fr;
+                     grid-gap: 20px;
+                    
+                       }
+                     
+                    
+                    </style>
+                    </head>
+                    <body>
+                         
+                         <div class="container">
+                     
+                              <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                      <div class="modal-content">
+                                          <div class="modal-header">
+                                              <h5 class="modal-title" id="exampleModalLabel" style="color:lightslategrey;font-size:30px;"><center><b><large>It is simple to access the Website.</large></b></center></h5> <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+                                          </div>
+                                          <div class="modal-body">
+                                              <div id="smartwizard">
+                                                  <ul><div class="grid-container">
+
+                                                       <div class="grid-child purple" style="color:black;font-size:32px;" style = "font-family:san-serif;">
+                                                            1. Sign Up.<br>
+                                                            2. Verify your Account.<br>
+                                                            3. Book an Appointment.<br>
+                                                            4. Complete Payment.<br>
+                                                       </div>
+                                                   
+                                                       <div class="grid-child green">
+                                                            <iframe width="400" height="200" src="https://www.youtube.com/embed/NCeTcjSzLJA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                       </div>
+                                                     
+                                                   </div>
+                                                       
+                              
+                                                       </ul>
+                                                       <div class="grid-container1">
+
+                                                            <div class="grid-child purple" >
+                                                            
+                                                                 <img src="{% static "images/pres3.png" %} " class="img-responsive" alt="">
+                                                              
+                                                            </div>
+                                                            <div class="grid-child green" style="color:black;font-size:32px;" style = "font-family:san-serif;">
+                                                               <center> <b> <br> Sign Up</b></center><br>
+                                                            </div>
+
+                                                            <div class="grid-child purple" style="color:black;font-size:32px;" style = "font-family:san-serif;">
+                                                                 <center> <b> <br> Verify your account</b></center><br>
+                                                                     
+                                                                   
+                                                                 </div>
+                                                                 <div class="grid-child green">
+                                                                     
+                                                                     <img src="{% static "images/pres3.png" %} " class="img-responsive" alt="">
+                                                                 </div>
+                                                                 <div class="grid-child purple" >
+                                                                      
+                                                                      <img src="{% static "images/pres3.png" %} " class="img-responsive" alt=""> 
+                                                                        
+                                                                      </div>
+                                                                      <div class="grid-child green" style="color:black;font-size:32px;" style = "font-family:san-serif;">
+                                                                           <center> <b> <br> Book an Appointment</b></center><br>
+                                                                      </div>
+                                                                      <div class="grid-child purple" style="color:black;font-size:32px;" style = "font-family:san-serif;">
+                                                                           <center> <b> <br>Complete Your Payment</b></center><br>
+                                                                           </div>
+                                                                           <div class="grid-child green">
+                                                                               
+                                                                               <img src="{% static "images/pres3.png" %} " class="img-responsive" alt=""> 
+                                                                           </div>
+                                                               
+                                                          
+                                                      </div>
+                                                    
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+
+                         
+                       
+                <!-- SHOP -->
+                <!-- service_area_start -->
+    <div class="service_area">
+     <div class="container">
+         <div class="row">
+             <div class="col-xl-12">
+                 <div class="section_title text-center mb-50">
+                    <b> <h1>What we Do?</h1></b><br>
+                 </div>
+             </div>
+         </div>
+         <div class="row">
+             <div class="col-xl-4 col-md-6 col-lg-4">
+                 <div class="single_service text-center">
+                     <div class="service_icon">
+                       
+                     </div>
+                     <h3>Easy Interaction</h3>
+                     <p>By providing the virtual environment the interaction became easy.</p>
+                  
+                 </div>
+             </div>
+             <div class="col-xl-4 col-md-6 col-lg-4">
+                 <div class="single_service text-center">
+                     <div class="service_icon">
+                         
+                     </div>
+                     <h3>Finance Solution</h3>
+                     <p>It provide a solution toward the financial problem.</p>
+               
+                 </div>
+             </div>
+             <div class="col-xl-4 col-md-6 col-lg-4">
+                 <div class="single_service text-center">
+                     <div class="service_icon">
+                  
+                     </div>
+                     <h3>Corporate Business</h3>
+                     <p>It enhance the Business and lead to the new developmemt.</p>
+                  
+                 </div>
+             </div>
+            
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- service_area_end -->
+        
+
+			
+	<!--================ End Department Area =================-->
+          
+               <!-- TEAM -->
+               <section id="team" data-stellar-background-ratio="1">
+                    <div class="container">
+                         <div class="row">
+          
+                              <div class="col-md-6 col-sm-6">
+                                   <div class="about-info">
+                                        <center><h2 class="wow fadeInUp" data-wow-delay="0.1s">Our Doctors</h2></center>
+                                   </div>
+                              </div>
+          
+                              <div class="clearfix"></div>
+          
+                              <div class="col-md-4 col-sm-6">
+                                   <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                                        <img src="{% static "images/team-image1.jpg" %} " class="img-responsive" alt="">
+          
+                                             <div class="team-info">
+                                                  <h3>Doctor 1</h3>
+                                                  <p>Designation</p><p>&#9632 <a href="#">Online</a></p>
+                                                 Schedule -  <time >1 pm to 5 pm</time> </p>
+                                                  <div class="team-contact-info">
+                                                       <p style="background-color: #00008b; color: #FFFF; padding: 20px; text-align: center; display: inline-block; cursor: pointer; border-radius: 12px;"> Book an Appointment</p>
+                                                       
+                                                  </div>
+                                                  <ul class="social-icon">
+                                                       <li><a href="#" class="fa fa-linkedin-square"></a></li>
+                                                       <li><a href="#" class="fa fa-envelope-o"></a></li>
+                                                  </ul>
+                                             </div>     </div>                         
+                              </div>
+                              
+          
+                              <div class="col-md-4 col-sm-6">
+                                   <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                                        <img src="{% static "images/team-image2.jpg" %} " class="img-responsive" alt="">
+          
+                                             <div class="team-info">
+                                                  <h3>Doctor 2</h3>
+                                                  <p>Designation</p><p>&#9632 <a href="#">Online</a></p>
+                                                 Schedule -  <time >1 pm to 5 pm</time> </p>
+                                                  <div class="team-contact-info">
+                                                       <p style="background-color: #00008b; color: #FFFF; padding: 20px; text-align: center; display: inline-block; cursor: pointer; border-radius: 12px;"> Book an Appointment</p>
+                                                       
+                                                  </div>
+                                                  <ul class="social-icon">
+                                                       <li><a href="#" class="fa fa-linkedin-square"></a></li>
+                                                       <li><a href="#" class="fa fa-envelope-o"></a></li>
+                                                  </ul>
+                                             </div>     </div>                         
+                              </div>
+                              <div class="col-md-4 col-sm-6">
+                                   <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                                        <img src="{% static "images/team-image3.jpg" %} " class="img-responsive" alt="">
+          
+                                             <div class="team-info">
+                                                  <h3>Doctor 3</h3>
+                                                  <p>Designation</p><p>&#9632 <a href="#">Online</a></p>
+                                                 Schedule -  <time >1 pm to 5 pm</time> </p>
+                                                  <div class="team-contact-info">
+                                                       <p style="background-color: #00008b; color: #FFFF; padding: 20px; text-align: center; display: inline-block; cursor: pointer; border-radius: 12px;"> Book an Appointment</p>
+                                                       
+                                                  </div>
+                                                  <ul class="social-icon">
+                                                       <li><a href="#" class="fa fa-linkedin-square"></a></li>
+                                                       <li><a href="#" class="fa fa-envelope-o"></a></li>
+                                                  </ul>
+                                             </div>     </div>                         
+                              </div>
+          
+     
+                                   
+          
+                          
+                                  
+     
+                    
+                    
+               </section>
+          
+         
+                 <!-- expert_doctors_area_start -->
+              <div class="expert_doctors_area">
+               <div class="container">
+                   <div class="row">
+                       <div class="col-xl-12">
+                           <div class="doctors_title mb-55">
+                              <center> <h2 class="wow fadeInUp" data-wow-delay="0.1s">Our Doctors</h2></center>
+                                          </div>
+                       </div>
+                   </div>
+                  <b> <div class="b"><p style = "font-family:georgia,garamond,serif;font-size:16px;font-style:italic;">The Doctor has a noble profession. A doctor’s duty is to treat and cure sick people. 
+                       In this profession one must have an intention of serving humanity. 
+                       This is one of the professions which earn too much respect in society. Unlike many other professions, 
+                       a doctor treats people belonging to different religions, castes and creeds.
+                     
+                       On the other hand, one who cures our teeth is called a dentist, one who does surgeries is called a surgeon and the one who diagnose heart problems is called a cardiologist and so on. 
+                       There are numerous diseases and  for each there is a specialized doctor.
+                           <p style = "font-family:georgia,garamond,serif;font-size:16px;font-style:italic;"><h1>Life Saver</h1>
+                           <p style = "font-family:georgia,garamond,serif;font-size:16px;font-style:italic;"> A doctor lives a routinely life. He wakes up early in the morning and goes to clinic or hospital and 
+                              works there while the day long and returns home at evening. Sometimes a doctor renders his duty at night. Whenever, there is an emergency or any patient is admitted at hospital at night doctor leaves his bed and
+                               goes there to treat or provide first aid to the patients
+                               
+                              One can say that a doctor’s life is very hard. It is not bed of roses it is a bed of thorns because one being a doctor can not let his patients suffer or feel uncomfortable.</div></p></b>
+                   <div class="row">
+                       <div class="col-md-4 col-sd-2">
+                         
+                           <div class="expert_active owl-carousel">
+                               <div class="single_expert">
+                                   <div class="expert_thumb">
+                                      <img src="{% static "images/1.png" %} "   alt="">
+                                   </div>
+                                   <div class="experts_name text-center">
+                                       <h3>Doctor 1</h3>
+                                       <span>Neurologist</span>
+                                   </div>
+                               </div>
+                               <div class="single_expert">
+                                   <div class="expert_thumb">
+                                       <img src="{% static "images/2.png" %} "  alt="">
+                                   </div>
+                                   <div class="experts_name text-center">
+                                       <h3>Doctor 2</h3>
+                                       <span>Neurologist</span>
+                                   </div>
+                               </div>
+                               <div class="single_expert">
+                                   <div class="expert_thumb">
+                                       <img src={% static "images/3.png" %} " alt="">
+                                   </div>
+                                   <div class="experts_name text-center">
+                                       <h3>Doctor 3</h3>
+                                       <span>Neurologist</span>
+                                   </div>
+                               </div>
+                               <div class="single_expert">
+                                   <div class="expert_thumb">
+                                       <img src="{% static "images/4.png" %} "  alt="">
+                                   </div>
+                                   <div class="experts_name text-center">
+                                       <h3>Doctor 4</h3>
+                                       <span>Neurologist</span>
+                                   </div>
+                               </div>
+                               <div class="single_expert">
+                                   <div class="expert_thumb">
+                                       <img src="{% static "images/5.png" %} "  alt="">
+                                   </div>
+                                   <div class="experts_name text-center">
+                                       <h3>Doctor 5</h3>
+                                       <span>Neurologist</span>
+                                   </div>
+                               </div>
+                               <div class="single_expert">
+                                   <div class="expert_thumb">
+                                       <img src="{% static "images/6.png" %} "  alt="">
+                                   </div>
+                                   <div class="experts_name text-center">
+                                       <h3>Doctor 6</h3>
+                                       <span>Neurologist</span>
+                                   </div>
+                                   
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           <!-- expert_doctors_area_end -->
+
+           <!--================ Start Team Area =================-->
+	<section class="section_gap team_area lite_bg">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-lg-7">
+					<div class="main_title">
+						<center><h2>OUR DOCTOR</h2></center>
+						
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<!-- single-team-member -->
+				<div class="col-lg-3 col-sm-6">
+					<div class="single_member">
+						<div class="author">
+							<img src="img/team/member1.png" alt="">
+						</div>
+						<div class="author_decs">
+							<div class="social_icons">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+							</div>
+							<h4>Ethel Davis</h4>
+							<p class="profession">Sr. Faculty Data Science</p>
+							<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price.</p>
+						</div>
+					</div>
+				</div>
+				<!-- single-team-member -->
+				<div class="col-lg-3 col-sm-6">
+					<div class="single_member">
+						<div class="author">
+							<img src="img/team/member2.png" alt="">
+						</div>
+						<div class="author_decs">
+							<div class="social_icons">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+							</div>
+							<h4>Rodney Cooper</h4>
+							<p class="profession">Sr. Faculty Data Science</p>
+							<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price.</p>
+						</div>
+					</div>
+				</div>
+				<!-- single-team-member -->
+				<div class="col-lg-3 col-sm-6">
+					<div class="single_member">
+						<div class="author">
+							<img src="img/team/member3.png" alt="">
+						</div>
+						<div class="author_decs">
+							<div class="social_icons">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+							</div>
+							<h4>Dane Walker</h4>
+							<p class="profession">Sr. Faculty Data Science</p>
+							<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price.</p>
+						</div>
+					</div>
+				</div>
+				<!-- single-team-member -->
+				<div class="col-lg-3 col-sm-6">
+					<div class="single_member">
+						<div class="author">
+							<img src="img/team/member4.png" alt="">
+						</div>
+						<div class="author_decs">
+							<div class="social_icons">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+							</div>
+							<h4>Lena Keller</h4>
+							<p class="profession">Sr. Faculty Data Science</p>
+							<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row mt-30">
+				<!-- single-team-member -->
+				<div class="col-lg-3 col-sm-6">
+					<div class="single_member">
+						<div class="author">
+							<img src="img/team/member1.png" alt="">
+						</div>
+						<div class="author_decs">
+							<div class="social_icons">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+							</div>
+							<h4>Ethel Davis</h4>
+							<p class="profession">Sr. Faculty Data Science</p>
+							<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price.</p>
+						</div>
+					</div>
+				</div>
+				<!-- single-team-member -->
+				<div class="col-lg-3 col-sm-6">
+					<div class="single_member">
+						<div class="author">
+							<img src="img/team/member2.png" alt="">
+						</div>
+						<div class="author_decs">
+							<div class="social_icons">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+							</div>
+							<h4>Rodney Cooper</h4>
+							<p class="profession">Sr. Faculty Data Science</p>
+							<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price.</p>
+						</div>
+					</div>
+				</div>
+				<!-- single-team-member -->
+				<div class="col-lg-3 col-sm-6">
+					<div class="single_member">
+						<div class="author">
+							<img src="img/team/member3.png" alt="">
+						</div>
+						<div class="author_decs">
+							<div class="social_icons">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+							</div>
+							<h4>Dane Walker</h4>
+							<p class="profession">Sr. Faculty Data Science</p>
+							<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price.</p>
+						</div>
+					</div>
+				</div>
+				<!-- single-team-member -->
+				<div class="col-lg-3 col-sm-6">
+					<div class="single_member">
+						<div class="author">
+							<img src="img/team/member4.png" alt="">
+						</div>
+						<div class="author_decs">
+							<div class="social_icons">
+								<a href="#"><i class="fa fa-facebook"></i></a>
+								<a href="#"><i class="fa fa-twitter"></i></a>
+								<a href="#"><i class="fa fa-linkedin"></i></a>
+							</div>
+							<h4>Lena Keller</h4>
+							<p class="profession">Sr. Faculty Data Science</p>
+							<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+          
+               <!-- MAKE AN APPOINTMENT -->
+               <section id="appointment" data-stellar-background-ratio="3">
+                    <div class="container">
+                         <div class="row">
+          
+                              <div class="col-md-6 col-sm-6">
+                                   <img src="{% static "images/app.jpg" %} " class="img-responsive" alt="">
+                              </div>
+          
+                              <div class="col-md-6 col-sm-6">
+                                   <!-- CONTACT FORM HERE -->
+                                   <form id="appointment-form"enctype="multipart/form-data" role="form" method="POST" action="">
+          
+                                        {% csrf_token %}
+                                       <div class="section-title wow fadeInUp" data-wow-delay="0.4s">
+                                             <h2>Make an appointment</h2>
+                                        </div>
+          {% comment %}
+          fields = ['name','age','sex','mob','emailid','description','doctorname','xray_1','video',]
+          
+          {% endcomment %}
+                                        <div class="wow fadeInUp" data-wow-delay="0.8s">
+                                             <div class="col-md-6 col-sm-6">
+                                                  <label for="name">Name</label>
+                                                <div class="form-control">
+                                                     {{form.name}}
+                                                </div>  
+                                             </div>
+                                             <div class="col-md-6 col-sm-6">
+                                                  <label for="age">Age</label>
+                                                  <div class="form-control">
+                                                     {{form.age}}  
+                                                  </div> 
+                                                  
+                                             </div>
+                                             <div class="col-md-6 col-sm-6">
+                                                  <label for="sex">Sex</label>
+                                                  <div class="form-control">
+                                                       {{form.sex}} 
+                                                  </div> 
+                                             </div>
+                                             <div class="col-md-6 col-sm-6">
+                                                  <label for="email">Email</label>
+                                                  <div class="form-control">
+                                                      {{form.emailid}}  
+                                                  </div> 
+                                                 
+                                             </div>
+          
+                                             <div class="col-md-6 col-sm-6">
+                                                  <label for="date" >Select Date</label>
+                                                  {{form.date}}
+                                             </div>
+          
+                                             <div class="col-md-6 col-sm-6">
+                                                  <label for="select">Select Doctor</label>
+                                                  <div class="form-control">
+                                                     {{form.doctorname}}  
+                                                   </div> 
+          
+                                                  
+                                             </div>
+          
+                                             <div class="col-md-12 col-sm-12">
+                                                  <label for="mob">Phone Number</label>
+                                                  <div class="form-control">
+                                                        {{form.mob}} 
+                                                   </div> 
+                                                  
+                                                       <label for="video">Select short video:</label>
+                                                       <div class="form-control">
+                                                             {{form.video}} 
+                                                        </div>  
+                                                      <label for="xray">X-ray photo:</label>
+                                                      <div class="form-control">
+                                                          {{form.xray_1}}
+                                                   </div>  
+                                                      
+                                                  <label for="message">description</label>
+                                                  
+                                                  {{form.description}}
+                                        
+                                            
+                                        <!-- SECTION TITLE -->
+                                        
+                                                  <!-- <button type="submit" method="GET" class="form-control" id="cf-submit" name="Payfee" onclick="" style="color: aqua;"><a href="payment" style="color: blanchedalmond;">Payfee</a> </button> -->
+                                                 <button type="submit" value="POST" class="form-control" id="cf-submit" name="submit">Submit Form</button>
+                                             </div>
+                                        </div>
+                                  </form>
+          
+                              </div>
+                         </div>
+                         
+                    </div>
+               </div>
+          </section>
+           
+              
+          
+     
+          <style>
+               body {
+                 font-family: Arial, Helvetica, sans-serif;
+               }
+               
+               * {
+                 box-sizing: border-box;
+               }
+               div.b {
+            position: absolute;
+            right: 0;
+            width: 800px;
+            height: 400px;
+           
+          } 
+          
+               /* Style inputs */
+               input[type=text], select, textarea {
+                 width: 100%;
+                 padding: 10px;
+                 border: 1px solid #ccc;
+                 margin-top: 6px;
+                 margin-bottom: 16px;
+                 resize: vertical;
+               }
+               
+               input[type=submit] {
+                 background-color: #4CAF50;
+                 color: white;
+                 padding: 12px 20px;
+                 border: none;
+                 cursor: pointer;
+               }
+               
+               input[type=submit]:hover {
+                 background-color: #45a049;
+               }
+               
+          
+               
+               /* Create two columns that float next to eachother */
+               .column {
+                 float: left;
+                 width: 50%;
+                 margin-top: 6px;
+                 padding: 20px;
+               }
+               
+               .row:after {
+            content: "";
+            display: table;
+            clear: both;
+          }
+               
+               /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+               @media screen and (max-width: 600px) {
+                 .column, input[type=submit] {
+                   width: 100%;
+                   margin-top: 0;
+                 }
+               }
+               </style>
+               
+               <!-- footer start -->
+              <footer class="footer">
+               <div class="footer_top">
+                   <div class="container">
+                       <div class="row">
+                           <div class="col-xl-4 col-md-6 col-lg-4">
+                               <div class="footer_widget">
+                                   <div class="footer_logo">
+                                       <a href="#">
+                                           <img src="{% static "images/vdc.png" %} " alt="">
+                                       </a>
+                                   </div>
+                                   <p>
+                                          We are here to help you .
+                                   </p>
+                                   <div class="socail_links">
+                                       <ul>
+                                           <li>
+                                               <a href="#">
+                                                   <i class="fa fa-facebook"></i>
+                                               </a>
+                                           </li>
+                                           <li>
+                                               <a href="https://twitter.com/">
+                                                   <i class="fa fa-twitter"></i>
+                                               </a>
+                                           </li>
+                                           <li>
+                                               <a href="https://www.instagram.com/accounts/login/">
+                                                   <i class="fa fa-instagram"></i>
+                                               </a>
+                                           </li>
+                                       </ul>
+                                   </div>
+          
+                               </div>
+                           </div>
+                           <div class="col-xl-2 offset-xl-1 col-md-6 col-lg-3">
+                               <div class="footer_widget">
+                                   <h3 class="footer_title">
+                                           Our Services
+                                   </h3>
+                                   <ul>
+                                       <li><a href="#">Make an Appointment</a></li>
+                                       <li><a href="#">Video call facility</a></li>
+                                       <li><a href="#">Prescription </a></li>
+                                       <li><a href="#">Consultaion</a></li>
+                                       </ul>
+          
+                               </div>
+                           </div>
+                           
+                           <div class="col-xl-3 col-md-6 col-lg-3">
+                               <div class="footer_widget">
+                                   <h3 class="footer_title">
+                                           opening Hours
+                                   </h3>
+                                   <p>
+                                        <p>Monday - Friday <span>06:00 AM - 10:00 PM</span></p>
+                                        <p>Saturday <span>09:00 AM - 08:00 PM</span></p>
+                                        <p>Sunday <span>Closed</span></p>
+                                   </div> 
+                                   </p>
+                               </div>
+                               
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="copy-right_text">
+                   <div class="container">
+                       <div class="footer_border"></div>
+                       <div class="row">
+                           <div class="col-xl-12">
+                               <p class="copy_right text-center">
+                                   <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                               </p>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </footer>
+                          
+               <script src=" {% static "js/jquery.js" %} "></script>
+               <script src=" {% static "js/bootstrap.min.js" %} "></script>
+               <script src=" {% static "js/jquery.sticky.js" %} "></script>
+               <script src=" {% static "js/jquery.stellar.min.js" %} "></script>
+               <script src=" {% static " js/wow.min.js" %}"></script>
+               <script src=" {% static " js/smoothscroll.js" %}"></script>
+               <script src=" {% static "js/owl.carousel.min.js" %} "></script>
+               <script src=" {% static "js/custom.js" %} "></script>
+          <!--Start of Tawk.to Script-->
+          <script type="text/javascript">
+               var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+               (function(){
+               var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+               s1.async=true;
+               s1.src='https://embed.tawk.to/5ecf56898ee2956d73a55250/default';
+               s1.charset='UTF-8';
+               s1.setAttribute('crossorigin','*');
+               s0.parentNode.insertBefore(s1,s0);
+               })();
+               </script>
+               <!--End of Tawk.to Script-->
+              
+          
+          
+          <!-- The core Firebase JS SDK is always required and must be listed first -->
+          
+          </body>
+          </html>
+          
+               <!-- GOOGLE MAP -->
+               <!-- <section id="google-map">
+               How to change your own map point
+                      1. Go to Google Maps
+                      2. Click on your location point
+                      3. Click "Share" and choose "Embed map" tab
+                      4. Copy only URL and paste it within the src="" field below
+               -->
+                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3647.3030413476204!2d100.5641230193719!3d13.757206847615207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf51ce6427b7918fc!2sG+Tower!5e0!3m2!1sen!2sth!4v1510722015945" width="100%" height="350" frameborder="0" style="border:0" allowfullscreen></iframe>
+               </section>            --> 
+          
+          
+               <!--FOOTER>
+               <!.....<footer data-stellar-background-ratio="5">.....!>
+                    <div class="container">
+                         <div class="row">
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="footer-thumb"> 
+                                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">Contact Info</h4>
+                                        <p>Fusce at libero iaculis, venenatis augue quis, pharetra lorem. Curabitur ut dolor eu elit consequat ultricies.</p>
+                                        <div class="contact-info">
+                                             <p><i class="fa fa-phone"></i> 010-070-0170</p>
+                                             <p><i class="fa fa-envelope-o"></i> <a href="#">info@company.com</a></p>
+                                        </div>
+                                   </div>
+                              </div>
+                         div class="col-md-4 col-sm-4"> 
+                                   <div class="footer-thumb"> 
+                                        <h4 class="wow fadeInUp" data-wow-delay="0.4s">Latest News</h4>
+                                        <div class="latest-stories">
+                                             <div class="stories-image">
+                                                  <a href="#"><img src="images/news-image.jpg" class="img-responsive" alt=""></a>
+                                             </div>
+                                             <div class="stories-info">
+                                                  <a href="#"><h5>Amazing Technology</h5></a>
+                                                  <span>March 08, 2018</span>
+                                             </div>
+                                        </div>
+                                        <div class="latest-stories">
+                                             <div class="stories-image">
+                                                  <a href="#"><img src="images/news-image.jpg" class="img-responsive" alt=""></a>
+                                             </div>
+                                             <div class="stories-info">
+                                                  <a href="#"><h5>New Healing Process</h5></a>
+                                                  <span>February 20, 2018</span>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         <div class="col-md-4 col-sm-4"> 
+                                   <div class="footer-thumb">
+                                        <div class="opening-hours">
+                                             <h4 class="wow fadeInUp" data-wow-delay="0.4s">Opening Hours</h4>
+                                             <p>Monday - Friday <span>06:00 AM - 10:00 PM</span></p>
+                                             <p>Saturday <span>09:00 AM - 08:00 PM</span></p>
+                                             <p>Sunday <span>Closed</span></p>
+                                        </div> 
+                                        <ul class="social-icon">
+                                             <li><a href="https://www.facebook.com/tooplate" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                             <li><a href="#" class="fa fa-twitter"></a></li>
+                                             <li><a href="#" class="fa fa-instagram"></a></li>
+                                        </ul>
+                                   </div>
+                              </div>
+                              <div class="col-md-12 col-sm-12 border-top">
+                                   <div class="col-md-4 col-sm-6">
+                                        <div class="copyright-text"> 
+                                             <p>Copyright &copy; 2017 Your Company 
+                                             
+                                             | Design: <a href="http://www.tooplate.com" target="_parent">Tooplate</a></p>
+                                        </div>
+                                   </div>
+                                   <div class="col-md-6 col-sm-6">
+                                        <div class="footer-link"> 
+                                             <a href="#">Laboratory Tests</a>
+                                             <a href="#">Departments</a>
+                                             <a href="#">Insurance Policy</a>
+                                             <a href="#">Careers</a>
+                                        </div>
+                                   </div>
+                                   <div class="col-md-2 col-sm-2 text-align-center">
+                                        <div class="angle-up-btn"> 
+                                            <a href="#top" class="smoothScroll wow fadeInUp" data-wow-delay="1.2s"><i class="fa fa-angle-up"></i></a>
+                                        </div>
+                                   </div>   
+                              </div> -->
+                              
+                         <!--div>
+                    <!--div-->
+               <!--footer-->
+          
+     
+          <!-- SCRIPTS -->
+    

@@ -1,0 +1,40 @@
+<!-- <html></html> -->
+<body>
+  {% include "main.html" %} 
+ {% if obj%}
+   <h2> <strong> <center>You have already filled form</center>  </strong> </h2>
+ {% endif %}   
+  <form action='.' name = "form" method="POST" onsubmit = "return(validate());" enctype="multipart/form-data">
+    {% csrf_token %}
+    <center> <table border="2">
+        {{form}}</table>>
+      </center>
+ 
+    <input class="btn btn-primary" type="submit" name="Update Information">
+    </form>
+<script type = "text/javascript">
+    
+       function validate() {
+          var emailID = document.form.emailid.value;
+          var mob=document.form.mob.value
+          atpos = emailID.indexOf("@");
+          dotpos = emailID.lastIndexOf(".");
+          
+          if (atpos < 1 || ( dotpos - atpos < 2 )) {
+             alert("Please enter correct email ID")
+             document.form.emailid.focus() ;
+             return false;
+          }
+          if (mob.toString().length!=10) {
+            alert(`Please enter correct mobile number,total digits are ${mob.toString().length}`)
+            console.log(mob);            
+             document.form.mob.focus() ;
+             return false;
+          }
+
+          return( true );
+       }
+   
+ </script>
+</body>
+
